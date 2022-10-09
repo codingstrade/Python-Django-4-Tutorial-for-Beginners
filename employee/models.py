@@ -1,5 +1,3 @@
-from distutils.command.upload import upload
-from tkinter import CASCADE
 from django.db import models
 from django.contrib import admin
 # Create your models here.
