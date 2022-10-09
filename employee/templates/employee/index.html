@@ -1,0 +1,54 @@
+{% extends 'main.html' %} {% block content %}
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Employees</h1>
+        <p class="lead text-muted">
+          This the list of all employees in the Company
+        </p>
+      </div>
+      <a href="{% url 'create' %}"> Create </a>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for employee in myEmployees %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              {% cycle 'bg-warning' 'bg-danger' 'bg-primary' 'bg-info' as bgcolor silent%}
+              <h5 class="card-title {{bgcolor}}">{{employee.name}}</h5>
+              <p class="card-text">{{employee.title}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a
+                    href="{% url 'delete' id=employee.id %}"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    Delete
+                  </a>
+                  <a
+                  href="{% url 'update' id=employee.id %}"
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    Update
+                  </a>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
